@@ -13,12 +13,12 @@ int countPairings(bool taken[10]){
 			break;
 		}
 	}
-	if(firstFree==-1) return 1;
+	if(firstFree==-1) return 1; //base case:모든 학생이 짝을 찾아 한 가지 사례를 찾았으니 종료
 	int ret = 0;
 	for(int pairWith = firstFree+1; pairWith < n; pairWith++){
 		if(!taken[pairWith]&&areFriends[firstFree][pairWith]){
 			taken[firstFree] = taken[pairWith] =true;
-			ret+=countPairings(taken);
+			ret+=countPairings(taken); //재귀호출
 			taken[firstFree] = taken[pairWith] = false;
 		}
 	}
@@ -29,7 +29,7 @@ int main(){
 	int caseNum;
 	cin>>caseNum;
 		while (caseNum--) {
-		memset(areFriends, false, sizeof(areFriends));
+		memset(areFriends, false, sizeof(areFriends)); //areFriends 배열을 false로 초기화
 		cin >> n >> m;
 		int input1, input2;
 		for (int i = 0; i < m; i++) {
